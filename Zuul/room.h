@@ -20,7 +20,7 @@ class Room {
     vector<char*> getItems();
     map<char*, Room*> getExits();
     public:
-    //all of the important varriables
+    //all of the important vasrriables
     char name[100];
     char description[300];
     map<char*, Room*> exits;
