@@ -8,6 +8,7 @@ using namespace std;
 
 class Room {
     public:
+    //all of the important functions
     Room();
     char* getName();
     char* getDescription();
@@ -19,6 +20,7 @@ class Room {
     vector<char*> getItems();
     map<char*, Room*> getExits();
     public:
+    //all of the important varriables
     char name[100];
     char description[300];
     map<char*, Room*> exits;
