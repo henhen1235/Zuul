@@ -17,7 +17,7 @@ class Room {
     bool removeItem(char* item);
     bool checkItem(char* item);
     vector<char*> getItems();
-    map<char*, Room*> getExists();
+    map<char*, Room*> getExits();
     public:
     char name[100];
     char description[300];
