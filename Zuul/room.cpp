@@ -54,5 +54,19 @@ bool Room::removeItem(char* item){
     return false;
 }
 
+bool Room::checkItem(char* item){
+     for(auto it = items.begin(); it != items.end(); it++){
+        if(strcmp(*it, item) == 0){
+            return true;
+        }
+    }
+    return false;
+}
 
+vector<char*> Room::getItems(){
+    return items;
+}
 
+map<char*, Room*> Room::getExits(){
+    return exits;
+}
