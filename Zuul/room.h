@@ -18,7 +18,7 @@ class Room {
     char* getName();
     char* getDescription();
     void setexits(char* side, Room* newroom);
-    Room* getexits(char* direction);
+    Room* getexit(char* direction);
     void addItem(char* item);
     bool removeItem(char* item);
     bool checkItem(char* item);

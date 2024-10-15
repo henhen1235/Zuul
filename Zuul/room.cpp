@@ -17,3 +17,42 @@ Room::Room() {
     strcpy(name, "");
     strcpy(description, ""); 
 }
+
+char* Room::getName(){
+    return name;
+}
+
+char* Room::getDescription(){
+    return description;
+}
+
+void Room::setexits(char* side, Room* newroom){
+    exits[side] = newroom;
+    //using maps link the char side to the pointer newroom and store it in the vector of maps called exits
+}
+
+Room* Room::getexit(char* direction){
+    if (exits.find(direction) != exits.end()) {
+        return exits[direction];
+    }
+    else{
+        return nullptr;
+    }
+}
+
+void Room::addItem(char* item){
+    items.push_back(item);
+}
+
+bool Room::removeItem(char* item){
+    for(auto it = items.begin(); it != items.end(); it++){
+        if(strcmp(*it, item) == 0){
+            items.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
