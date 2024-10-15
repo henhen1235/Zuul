@@ -26,8 +26,8 @@ class Room {
     map<char*, Room*> getExits();
     public:
     //all of the important vasrriables
-    char name[100];
-    char description[300];
+    char* name;
+    char* description;
     map<char*, Room*> exits;
     vector<char*> items;
 };
