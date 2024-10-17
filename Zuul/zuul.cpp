@@ -5,11 +5,17 @@
 
 using namespace std;
 
-void setup(vector<Room*> &rooms);
+struct Item {
+    char name[20];
+    char description[50];
+};
+
+void setup(vector<Room*> &rooms, vector<Item> &items);
 
 int main(){
     vector<Room*> rooms;
-    setup(rooms);
+    vector<Item> items;
+    setup(rooms, items);
 
 
 
@@ -20,7 +26,7 @@ int main(){
 }
 
 
-void setup(vector<Room*> &rooms){
+void setup(vector<Room*> &rooms, vector<Item> &items){
     //init the rooms
     Room* Entrance = new Room;
     Room* Livingroom = new Room;
@@ -82,7 +88,7 @@ void setup(vector<Room*> &rooms){
     Hallway->setexits("west", Bedroom2);
     Hallway->setexits("south", Stairway2);
 
-    Stairway2->setexits("west", Hallway);
+    Stairway2->setexits("north", Hallway);
     Stairway2->setexits("south", Diningroom);
 
     Diningroom->setexits("north", Stairway2);
@@ -131,12 +137,15 @@ void setup(vector<Room*> &rooms){
     rooms.push_back(Bedroom1);
     rooms.push_back(Balcony);
 
+    items.push_back({"beans", "What is this??"});
+    items.push_back({"rightwing", "Maybe with the other one you can fly"});
+    items.push_back({"leftwing", "Maybe with the other one you can fly"});
+    items.push_back({"spatula", "Kitchen utensil or murder weapon?"});
+    items.push_back({"toothbrush", "Yummy"});
 
-
-
-
-
-
-
-
+    Hallway->addItem(items[0].name);
+    Pantry->addItem(items[1].name);
+    Closet->addItem(items[2].name);
+    Kitchen->addItem(items[3].name);
+    Bathroom->addItem(items[4].name);
 }
