@@ -4,10 +4,10 @@ Henry Xu
 Room.cpp file
 */
 
-#include <iostream>;
-#include <cstring>;
-#include "room.h";
-#include <vector>;
+#include <iostream>
+#include <cstring>
+#include "room.h"
+#include <vector>
 
 using namespace std;
 
