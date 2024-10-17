@@ -18,6 +18,14 @@ Room::Room() {
     strcpy(description, ""); 
 }
 
+void Room::setName(char* nname){
+    strcpy(name, nname);
+}
+
+void Room::setDescription(char* ndescription){
+    strcpy(description, ndescription);
+}
+
 char* Room::getName(){
     return name;
 }

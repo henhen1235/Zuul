@@ -15,6 +15,8 @@ class Room {
     public:
     //all of the important functions
     Room();
+    void setName(char* nname);
+    void setDescription(char* ndescription);
     char* getName();
     char* getDescription();
     void setexits(char* side, Room* newroom);
