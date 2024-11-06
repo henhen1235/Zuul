@@ -13,11 +13,61 @@ struct Item {
 void setup(vector<Room*> &rooms, vector<Item> &items);
 
 int main(){
+
+   vector<char*> EntranceS;
+    vector<char*> LivingroomS;
+    vector<char*> BathroomS;
+    vector<char*> BackyardS;
+    vector<char*> GarageS;
+    vector<char*> ClosetS;
+    vector<char*> Stairway1S;
+    vector<char*> KitchenS;
+    vector<char*> DiningroomS;
+    vector<char*> PantryS;
+    vector<char*> Stairway2S;
+    vector<char*> HallwayS;
+    vector<char*> Bedroom2S;
+    vector<char*> Bedroom1S;
+    vector<char*> BalconyS;
+
+    char bean[10];
+    strcpy(bean, "bean");
+    HallwayS.push_back(bean);
+    char rightwing[10];
+    strcpy(rightwing, "rightwing");
+    PantryS.push_back(rightwing);
+    char leftwing[10];
+    strcpy(leftwing, "leftwing");
+    ClosetS.push_back(leftwing);
+    char* spatula = new char[10];
+    strcpy(spatula, "spatula");
+    KitchenS.push_back(spatula);
+    char toothbrush[11];
+    strcpy(toothbrush, "toothbrush");
+    BathroomS.push_back(toothbrush);
+
     vector<Room*> rooms;
     vector<Item> items;
+    vector<Item> inventory;
     setup(rooms, items);
-    cout << "test";
-
+    char beans[10] = "Hallway";
+    cout << "Welcome to Henry's awesome Zuul game. Your goal is to explore the rooms, find the wings, then ultimatly escape through the balcony." << endl << "Good Luck. Type: help if you need it. All of the prompts are case sensitive, do not use any uppercase! Thanks!" << endl;
+    Room* currentroom = rooms[7];
+    while(true){
+      char move[10];
+      cout << "What is your move?" << endl;
+      cin >> move;
+      if(strcmp(move, "help") == 0){
+	cout << "These are the moves that you can do:" << endl << "help - you are on this page" << endl << "north - nove to the north if it exists" << endl << "west - move to the west if it exists" << endl << "east - move to the east if it exists" << endl << "south - move to the south if it exists." << endl;
+	cout << "Currently you are on room: " << currentroom->getName() << " - " << currentroom->getDescription() << endl;
+	cout << "You current have items: ";
+	char* temproom = currentroom->getName();
+	for (int x = 0; x > KitchenS.size(); x++) {
+	  cout << KitchenS[x];
+	}
+	cout << endl;
+      }
+    }
 
 
     return 0;
@@ -206,16 +256,36 @@ void setup(vector<Room*> &rooms, vector<Item> &items){
     rooms.push_back(Bedroom2);
     rooms.push_back(Bedroom1);
     rooms.push_back(Balcony);
+    /*
+    vector<char*> EntranceS;
+    vector<char*> LivingroomS;
+    vector<char*> BathroomS;
+    vector<char*> BackyardS;
+    vector<char*> GarageS;
+    vector<char*> ClosetS;
+    vector<char*> Stairway1S;
+    vector<char*> KitchenS;
+    vector<char*> DiningroomS;
+    vector<char*> PantryS;
+    vector<char*> Stairway2S;
+    vector<char*> HallwayS;
+    vector<char*> Bedroom2S;
+    vector<char*> Bedroom1S;
+    vector<char*> BalconyS;
 
-    items.push_back({"beans", "What is this??"});
-    items.push_back({"rightwing", "Maybe with the other one you can fly"});
-    items.push_back({"leftwing", "Maybe with the other one you can fly"});
-    items.push_back({"spatula", "Kitchen utensil or murder weapon?"});
-    items.push_back({"toothbrush", "Yummy"});
-
-    Hallway->addItem(items[0].name);
-    Pantry->addItem(items[1].name);
-    Closet->addItem(items[2].name);
-    Kitchen->addItem(items[3].name);
-    Bathroom->addItem(items[4].name);
-}
+    char bean[10];
+    strcpy(bean, "bean");
+    HallwayS.push_back(bean);
+    char rightwing[10];
+    strcpy(rightwing, "rightwing");
+    PantryS.push_back(rightwing);
+    char leftwing[10];
+    strcpy(leftwing, "leftwing");
+    ClosetS.push_back(leftwing);
+    char spatula[10];
+    strcpy(spatula, "spatula");
+    KitchenS.push_back(spatula);
+    char toothbrush[10];
+    strcpy(toothbrush, "toothbrush");
+    BathroomS.push_back(toothbrush);
+    */}
