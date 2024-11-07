@@ -196,23 +196,23 @@ int main(){
    
     char* bean = new char[10];
     strcpy(bean, "bean");
-    Hallway->addItem(bean);
+    Entrance->addItem(bean);
 
     char* rightwing = new char[10];
     strcpy(rightwing, "rightwing");
-    Pantry->addItem(rightwing);
+    Entrance->addItem(rightwing);
 
     char* leftwing = new char[10];
     strcpy(leftwing, "leftwing");
-    Closet->addItem(leftwing);
+    Entrance->addItem(leftwing);
 
     char* spatula = new char[10];
     strcpy(spatula, "spatula");
-    Kitchen->addItem(spatula);
+    Entrance->addItem(spatula);
 
     char* toothbrush = new char[11];
     strcpy(toothbrush, "toothbrush");
-    Kitchen->addItem(toothbrush);
+    Entrance->addItem(toothbrush);
 //_____________________________________________________________________________________________ set up
 
     //introduction
@@ -229,9 +229,20 @@ int main(){
         bool checkwing1 = false;
         bool checkwing2 = false;
         for (int x = 0; x < inventory.size(); x++) {
-          cout << inventory[x] << ", ";
+          if(inventory[x] == rightwing){
+            checkwing1 = true;
+          }
+
+          if(inventory[x] == leftwing){
+            checkwing2 = true;
+          }
         }
-        
+        if(checkwing1 == true){
+          if(checkwing2 == true){
+            cout << "You have WON the game. Congrats! Thanks for Playing";
+          }
+        }
+        break;
       }
 
       //current room + description
@@ -271,6 +282,7 @@ int main(){
         << endl << "toothbrush - pick up the toothbrush"
         << endl << "inventory - check your inventory"
         << endl << "drop - drop the item you desire"
+        << endl << "quit - quit the game(your lame)"
         << endl << "___________________________________________________________________________________________________________________________________________________________" << endl;
       }
      
