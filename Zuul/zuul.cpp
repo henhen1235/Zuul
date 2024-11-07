@@ -224,6 +224,16 @@ int main(){
     Room* currentroom = Entrance;//currentroom
 
     while(true){
+      //win condition
+      if(currentroom == Balcony){
+        bool checkwing1 = false;
+        bool checkwing2 = false;
+        for (int x = 0; x < inventory.size(); x++) {
+          cout << inventory[x] << ", ";
+        }
+        
+      }
+
       //current room + description
       cout << "Currently you are on room: " << endl << currentroom->getName() << " - " << currentroom->getDescription() << endl;
 	    cout << "The room has items: " << endl;
@@ -260,6 +270,7 @@ int main(){
         << endl << "leftwing - pick up the leftwing"
         << endl << "toothbrush - pick up the toothbrush"
         << endl << "inventory - check your inventory"
+        << endl << "drop - drop the item you desire"
         << endl << "___________________________________________________________________________________________________________________________________________________________" << endl;
       }
      
@@ -362,7 +373,7 @@ int main(){
         cout << "You picked up the leftwing" << endl;
         }
         else{
-          cout << "There is no bean" << endl;
+          cout << "There is no leftwing" << endl;
         }
       cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
       }
@@ -377,6 +388,50 @@ int main(){
           cout << "There is no toothbrush" << endl;
         }
       cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
+      }
+
+      //checking inventory
+      else if(strcmp(move, "inventory") == 0){
+        cout << "You currently have: ";
+        for (int x = 0; x < inventory.size(); x++) {
+          cout << inventory[x] << ", ";
+        }
+        cout << endl;
+        cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
+      }
+
+      //dropping items
+      else if(strcmp(move, "drop") == 0){
+        cout << "What would you like to drop?" << endl;
+        char droppeditem[12];
+        cin >> droppeditem;
+        bool found = false;
+        for (int x = 0; x < inventory.size(); x++) {
+          if(strcmp(inventory[x], droppeditem) == 0){
+            currentroom->addItem(inventory[x]);
+            inventory.erase(inventory.begin() + x);
+            found = true;
+            cout << "You dropped: " << droppeditem << endl;
+            break;
+          }
+        }
+        if(found = false){
+          cout << "You don't have this item";
+        }
+        cout << endl;
+        cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
+      }
+
+      //quitting game
+      else if(strcmp(move, "quit") == 0){
+        cout << "Thanks for playing the game" << endl;
+        break;
+      }
+
+      //invalid command
+      else{
+        cout << "This command does not exist. (use help)" << endl;
+        cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
       }
       
     }
