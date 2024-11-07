@@ -5,52 +5,14 @@
 
 using namespace std;
 
-struct Item {
-    char name[20];
-    char description[50];
-};
-
-void setup(vector<Room*> &rooms, vector<Item> &items);
+void setup(vector<Room*> &rooms, vector<char*> &items);
 
 int main(){
 
-   vector<char*> EntranceS;
-    vector<char*> LivingroomS;
-    vector<char*> BathroomS;
-    vector<char*> BackyardS;
-    vector<char*> GarageS;
-    vector<char*> ClosetS;
-    vector<char*> Stairway1S;
-    vector<char*> KitchenS;
-    vector<char*> DiningroomS;
-    vector<char*> PantryS;
-    vector<char*> Stairway2S;
-    vector<char*> HallwayS;
-    vector<char*> Bedroom2S;
-    vector<char*> Bedroom1S;
-    vector<char*> BalconyS;
-
-    char bean[10];
-    strcpy(bean, "bean");
-    HallwayS.push_back(bean);
-    char rightwing[10];
-    strcpy(rightwing, "rightwing");
-    PantryS.push_back(rightwing);
-    char leftwing[10];
-    strcpy(leftwing, "leftwing");
-    ClosetS.push_back(leftwing);
-    char* spatula = new char[10];
-    strcpy(spatula, "spatula");
-    KitchenS.push_back(spatula);
-    char toothbrush[11];
-    strcpy(toothbrush, "toothbrush");
-    BathroomS.push_back(toothbrush);
-
     vector<Room*> rooms;
-    vector<Item> items;
-    vector<Item> inventory;
+    vector<char*> items;
+    vector<char*> inventory;
     setup(rooms, items);
-    char beans[10] = "Hallway";
     cout << "Welcome to Henry's awesome Zuul game. Your goal is to explore the rooms, find the wings, then ultimatly escape through the balcony." << endl << "Good Luck. Type: help if you need it. All of the prompts are case sensitive, do not use any uppercase! Thanks!" << endl;
     Room* currentroom = rooms[7];
     while(true){
@@ -61,20 +23,20 @@ int main(){
 	cout << "These are the moves that you can do:" << endl << "help - you are on this page" << endl << "north - nove to the north if it exists" << endl << "west - move to the west if it exists" << endl << "east - move to the east if it exists" << endl << "south - move to the south if it exists." << endl;
 	cout << "Currently you are on room: " << currentroom->getName() << " - " << currentroom->getDescription() << endl;
 	cout << "The room has items: ";
-	char* temproom = currentroom->getName();
-	for (int x = 0; x < KitchenS.size(); x++) {
-	  cout << KitchenS[x];
-	}
-	cout << endl;
+	vector<char*> items = currentroom->getItems();
+            for (int x = 0; x < items.size(); x++) {
+                cout << items[x] << " ";
+            }
+            cout << endl;
+
       }
     }
-
-
+    cleanup(rooms);
     return 0;
 }
 
 
-void setup(vector<Room*> &rooms, vector<Item> &items){
+void setup(vector<Room*> &rooms, vector<char*> &items){
     //init the rooms
     Room* Entrance = new Room;
     Room* Livingroom = new Room;
@@ -256,36 +218,38 @@ void setup(vector<Room*> &rooms, vector<Item> &items){
     rooms.push_back(Bedroom2);
     rooms.push_back(Bedroom1);
     rooms.push_back(Balcony);
-    /*
-    vector<char*> EntranceS;
-    vector<char*> LivingroomS;
-    vector<char*> BathroomS;
-    vector<char*> BackyardS;
-    vector<char*> GarageS;
-    vector<char*> ClosetS;
-    vector<char*> Stairway1S;
-    vector<char*> KitchenS;
-    vector<char*> DiningroomS;
-    vector<char*> PantryS;
-    vector<char*> Stairway2S;
-    vector<char*> HallwayS;
-    vector<char*> Bedroom2S;
-    vector<char*> Bedroom1S;
-    vector<char*> BalconyS;
-
-    char bean[10];
+   
+    char* bean = new char[10];
     strcpy(bean, "bean");
-    HallwayS.push_back(bean);
-    char rightwing[10];
+    Hallway->addItem(bean);
+
+    char* rightwing = new char[10];
     strcpy(rightwing, "rightwing");
-    PantryS.push_back(rightwing);
-    char leftwing[10];
+    Pantry->addItem(rightwing);
+
+    char* leftwing = new char[10];
     strcpy(leftwing, "leftwing");
-    ClosetS.push_back(leftwing);
-    char spatula[10];
+    Closet->addItem(leftwing);
+
+    char* spatula = new char[10];
     strcpy(spatula, "spatula");
-    KitchenS.push_back(spatula);
-    char toothbrush[10];
+    Kitchen->addItem(spatula);
+
+    char* toothbrush = new char[11];
     strcpy(toothbrush, "toothbrush");
-    BathroomS.push_back(toothbrush);
-    */}
+    Bathroom->addItem(toothbrush);
+}
+
+void cleanup(vector<Room*> &rooms) {
+    for (Room* room : rooms) {
+        delete[] room->getName();  // Free room name
+        delete[] room->getDescription();  // Free room description
+
+        vector<char*> items = room->getItems();
+        for (char* item : items) {
+            delete[] item;  // Free each item name
+        }
+
+        delete room;  // Free the room itself
+    }
+}
