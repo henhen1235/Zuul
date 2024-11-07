@@ -244,6 +244,7 @@ int main(){
       char move[10];
       cout << "Input: ";
       cin >> move;
+      cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
       
       //help
       if(strcmp(move, "help") == 0){
@@ -253,11 +254,16 @@ int main(){
         << endl << "west - move to the west if it exists" 
         << endl << "east - move to the east if it exists" 
         << endl << "south - move to the south if it exists." 
+        << endl << "bean - pick up the bean"
+        << endl << "spatula - pick up the spatula"
+        << endl << "rightwing - pick up the rightwing"
+        << endl << "leftwing - pick up the leftwing"
+        << endl << "toothbrush - pick up the toothbrush"
         << endl << "___________________________________________________________________________________________________________________________________________________________" << endl;
       }
      
       //going north
-      if(strcmp(move, "north") == 0){
+      else if(strcmp(move, "north") == 0){
         if(currentroom->getexit(north) != nullptr){
           cout << "north" << endl;
           currentroom = currentroom->getexit(north);
@@ -271,7 +277,7 @@ int main(){
       }
       
       //going south
-      if(strcmp(move, "south") == 0){
+      else if(strcmp(move, "south") == 0){
         if(currentroom->getexit(south) != nullptr){
           cout << "south" << endl;
           currentroom = currentroom->getexit(south);
@@ -285,7 +291,7 @@ int main(){
       }
       
       //going west
-      if(strcmp(move, "west") == 0){
+      else if(strcmp(move, "west") == 0){
         if(currentroom->getexit(west) != nullptr){
           cout << "west" << endl;
           currentroom = currentroom->getexit(west);
@@ -299,7 +305,7 @@ int main(){
       }
       
       //going east
-      if(strcmp(move, "east") == 0){
+      else if(strcmp(move, "east") == 0){
         if(currentroom->getexit(east) != nullptr){
           cout << "east" << endl;
           currentroom = currentroom->getexit(east);
@@ -310,6 +316,16 @@ int main(){
         cout << "east" << endl;
         }
       cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
+      }
+
+      else if(strcmp(move, "bean") == 0){
+        if(currentroom->removeItem(bean) == true){
+        inventory.push_back(bean);
+        cout << "You picked up the bean" << endl;
+        }
+        else{
+          cout << "There is no bean" << endl;
+        }
       }
       
     }
