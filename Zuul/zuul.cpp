@@ -4,40 +4,14 @@
 #include <vector>
 
 using namespace std;
-
-void setup(vector<Room*> &rooms, vector<char*> &items);
+//set up functions
+void cleanup(vector<Room*> &rooms);
 
 int main(){
-
-    vector<Room*> rooms;
+    vector<Room*> rooms;//set up vectors
     vector<char*> items;
     vector<char*> inventory;
-    setup(rooms, items);
-    cout << "Welcome to Henry's awesome Zuul game. Your goal is to explore the rooms, find the wings, then ultimatly escape through the balcony." << endl << "Good Luck. Type: help if you need it. All of the prompts are case sensitive, do not use any uppercase! Thanks!" << endl;
-    Room* currentroom = rooms[7];
-    while(true){
-      char move[10];
-      cout << "What is your move?" << endl;
-      cin >> move;
-      if(strcmp(move, "help") == 0){
-	cout << "These are the moves that you can do:" << endl << "help - you are on this page" << endl << "north - nove to the north if it exists" << endl << "west - move to the west if it exists" << endl << "east - move to the east if it exists" << endl << "south - move to the south if it exists." << endl;
-	cout << "Currently you are on room: " << currentroom->getName() << " - " << currentroom->getDescription() << endl;
-	cout << "The room has items: ";
-	vector<char*> items = currentroom->getItems();
-            for (int x = 0; x < items.size(); x++) {
-                cout << items[x] << " ";
-            }
-            cout << endl;
-
-      }
-    }
-    cleanup(rooms);
-    return 0;
-}
-
-
-void setup(vector<Room*> &rooms, vector<char*> &items){
-    //init the rooms
+//_____________________________________________________________________________________________ set up
     Room* Entrance = new Room;
     Room* Livingroom = new Room;
     Room* Bathroom = new Room;
@@ -101,6 +75,7 @@ void setup(vector<Room*> &rooms, vector<char*> &items){
     Bedroom2->setName(Bedroom2n);
     Bedroom1->setName(Bedroom1n);
     Balcony->setName(Balconyn);
+
     //give rooms description
     char* entranced = new char[100];
     strcpy(entranced, "A large doorway with simple stone floors welcoming you into the house");
@@ -237,7 +212,109 @@ void setup(vector<Room*> &rooms, vector<char*> &items){
 
     char* toothbrush = new char[11];
     strcpy(toothbrush, "toothbrush");
-    Bathroom->addItem(toothbrush);
+    Kitchen->addItem(toothbrush);
+//_____________________________________________________________________________________________ set up
+
+    //introduction
+    cout << "___________________________________________________________________________________________________________________________________________________________" 
+    << endl << "Welcome to Henry's awesome Zuul game. Your goal is to explore the rooms, find the wings, then ultimatly escape through the balcony." 
+    << endl << "Type: help if you need it." << endl << "All of the prompts are case sensitive, do not use any uppercase! Thanks!" 
+    << endl << "___________________________________________________________________________________________________________________________________________________________" << endl;
+    
+    Room* currentroom = Entrance;//currentroom
+
+    while(true){
+      //current room + description
+      cout << "Currently you are on room: " << endl << currentroom->getName() << " - " << currentroom->getDescription() << endl;
+	    cout << "The room has items: " << endl;
+      //current items
+	    vector<char*> items = currentroom->getItems();
+        for (int x = 0; x < items.size(); x++) {
+          cout << items[x] << ", ";
+        }
+      cout << endl;
+      //current exits
+      cout << "There are exits:" << endl;
+      map<char*, Room*> tempexits = currentroom->getExits();
+      for (auto it = tempexits.begin(); it != tempexits.end(); ++it) {
+        cout << it->first << " ";
+      }
+      cout << endl;
+      //the command they give
+      char move[10];
+      cout << "Input: ";
+      cin >> move;
+      
+      //help
+      if(strcmp(move, "help") == 0){
+	      cout << "These are the moves that you can do: " 
+        << endl << "help - you are on this page" 
+        << endl << "north - nove to the north if it exists" 
+        << endl << "west - move to the west if it exists" 
+        << endl << "east - move to the east if it exists" 
+        << endl << "south - move to the south if it exists." 
+        << endl << "___________________________________________________________________________________________________________________________________________________________" << endl;
+      }
+     
+      //going north
+      if(strcmp(move, "north") == 0){
+        if(currentroom->getexit(north) != nullptr){
+          cout << "north" << endl;
+          currentroom = currentroom->getexit(north);
+          cout << "You moved north" << endl;
+      }
+      else { 
+        cout << "You can't go that way." << endl;
+        cout << "north" << endl;
+      }
+      cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
+      }
+      
+      //going south
+      if(strcmp(move, "south") == 0){
+        if(currentroom->getexit(south) != nullptr){
+          cout << "south" << endl;
+          currentroom = currentroom->getexit(south);
+          cout << "You moved south" << endl;
+      }
+      else { 
+        cout << "You can't go that way." << endl;
+        cout << "south" << endl;
+        }
+      cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
+      }
+      
+      //going west
+      if(strcmp(move, "west") == 0){
+        if(currentroom->getexit(west) != nullptr){
+          cout << "west" << endl;
+          currentroom = currentroom->getexit(west);
+          cout << "You moved west" << endl;
+      }
+      else { 
+        cout << "You can't go that way." << endl;
+        cout << "west" << endl;
+        }
+      cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
+      }
+      
+      //going east
+      if(strcmp(move, "east") == 0){
+        if(currentroom->getexit(east) != nullptr){
+          cout << "east" << endl;
+          currentroom = currentroom->getexit(east);
+          cout << "You moved east" << endl;
+      }
+      else { 
+        cout << "You can't go that way." << endl;
+        cout << "east" << endl;
+        }
+      cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
+      }
+      
+    }
+    cleanup(rooms);
+    return 0;
 }
 
 void cleanup(vector<Room*> &rooms) {
