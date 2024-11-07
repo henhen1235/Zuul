@@ -60,9 +60,9 @@ int main(){
       if(strcmp(move, "help") == 0){
 	cout << "These are the moves that you can do:" << endl << "help - you are on this page" << endl << "north - nove to the north if it exists" << endl << "west - move to the west if it exists" << endl << "east - move to the east if it exists" << endl << "south - move to the south if it exists." << endl;
 	cout << "Currently you are on room: " << currentroom->getName() << " - " << currentroom->getDescription() << endl;
-	cout << "You current have items: ";
+	cout << "The room has items: ";
 	char* temproom = currentroom->getName();
-	for (int x = 0; x > KitchenS.size(); x++) {
+	for (int x = 0; x < KitchenS.size(); x++) {
 	  cout << KitchenS[x];
 	}
 	cout << endl;

@@ -7,16 +7,16 @@
             "command": "g++",
             "args": [
                 "-g",
-                "zuul.cpp",
-                "room.cpp",
+                "C:/Users/henry/c++/finalZuul/Zuul/Zuul/zuul.cpp",
+                "C:/Users/henry/c++/finalZuul/Zuul/Zuul/room.cpp",
                 "-o",
-                "${workspaceFolder}/output"
+                "C:/Users/henry/c++/finalZuul/Zuul/Zuul/zuul.exe"
             ],
             "group": "build",
             "problemMatcher": [
                 "$gcc"
             ],
-            "detail": "Generated task to compile multiple files"
+            "detail": "Generated task to compile and link zuul.cpp and room.cpp"
         },
         {
             "type": "cppbuild",
