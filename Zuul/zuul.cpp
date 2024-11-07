@@ -259,6 +259,7 @@ int main(){
         << endl << "rightwing - pick up the rightwing"
         << endl << "leftwing - pick up the leftwing"
         << endl << "toothbrush - pick up the toothbrush"
+        << endl << "inventory - check your inventory"
         << endl << "___________________________________________________________________________________________________________________________________________________________" << endl;
       }
      
@@ -318,6 +319,7 @@ int main(){
       cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
       }
 
+      //picking up bean
       else if(strcmp(move, "bean") == 0){
         if(currentroom->removeItem(bean) == true){
         inventory.push_back(bean);
@@ -326,6 +328,55 @@ int main(){
         else{
           cout << "There is no bean" << endl;
         }
+      cout << "___________________________________________________________________________________________________________________________________________________________" << endl;  
+      }
+
+      //picking up spatula
+      else if(strcmp(move, "spatula") == 0){
+        if(currentroom->removeItem(spatula) == true){
+        inventory.push_back(spatula);
+        cout << "You picked up the spatula" << endl;
+        }
+        else{
+          cout << "There is no spatula" << endl;
+        }
+      cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
+      }
+
+      //picking up rightwing
+      else if(strcmp(move, "rightwing") == 0){
+        if(currentroom->removeItem(rightwing) == true){
+        inventory.push_back(rightwing);
+        cout << "You picked up the rightwing" << endl;
+        }
+        else{
+          cout << "There is no rightwing" << endl;
+        }
+      cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
+      }
+
+      //picking up leftwing
+      else if(strcmp(move, "leftwing") == 0){
+        if(currentroom->removeItem(leftwing) == true){
+        inventory.push_back(leftwing);
+        cout << "You picked up the leftwing" << endl;
+        }
+        else{
+          cout << "There is no bean" << endl;
+        }
+      cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
+      }
+
+      //picking up toothbrush
+      else if(strcmp(move, "toothbrush") == 0){
+        if(currentroom->removeItem(toothbrush) == true){
+        inventory.push_back(toothbrush);
+        cout << "You picked up the toothbrush" << endl;
+        }
+        else{
+          cout << "There is no toothbrush" << endl;
+        }
+      cout << "___________________________________________________________________________________________________________________________________________________________" << endl;
       }
       
     }
